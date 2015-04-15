@@ -10,7 +10,21 @@ April 15 2015
 
 **Usage**
 
-This pipeline is compatible with SPM8. Place the ‘AutomatedLesionDetection’ folder inside SPM’s toolbox folder.
+Installation
+ - This pipeline is requires that you have Matlab and SPM8 installed.
+ - Place the ‘AutomatedLesionDetection’ folder and all its contents inside SPM’s toolbox folder.
+
+Example lesion segmentation (using pre-generated images)
+ - Launch Matlab and launch SPM8 (by typing 'spm fmri' from the Matlab command line).
+ - Press the 'Batch' button from SPM's main window to display the 'Batch Editor' window
+ - From the Batch window, select the SPM/Tools/AutoLesionDetect/AutomatedLesionModelTesting menu item
+ - Double-click on the 'patient MRI', and choose the T1 scan you wish to analyze (in our case 'testT1.nii')
+ - Double-click on the 'SVM Model: Zero Order Statistical Feature Model', and choose 1st database (in our case '111.???')
+ - Double-click on the 'SVM Model: First Order Statistical Feature Model', and choose 1st database (in our case '222.???')
+ - Double-click on the 'SVM Model: Second Order Statistical Feature Model', and choose 1st database (in our case '333.???')
+ - Double-click on the 'Average and Zscored Healty MRI, and choose healthy control images (in our case '444.???') 
+ - Since our patient's T1 image still shows the scalp (e.g. the scalp was not removed with FSL BET) make sure the 'With Skull & Scalp' is set to 1 
+ -Choose the File/RunBatch command to generate your lesion map
 
 **Modules**
 

@@ -4,18 +4,39 @@ function ALD_Tools = tbx_cfg_AutoLesionDetectioin_Tool
 % Dazhou Guo
 % $Id: tbx_cfg_AutoLesionDetection.m 
 
-if ~isdeployed, addpath(fullfile(spm('Dir'),'toolbox','AutoLesionDetection')); end
+if ~isdeployed
+	
+	[p,nam] = fileparts(fileparts(mfilename('fullpath')));
+    nam = fullfile(spm('Dir'),'toolbox',nam);
+    if ~exist(nam, 'file') 
+        fprintf('Error: please put %s in your SPM toolbox folder\n', mfilename('fullpath'));
+    end
+    addpath(nam);
+	%addpath(fullfile(spm('Dir'),'toolbox','AutoLesionDetection')); 
+
+end
 %%
 % ---------------------------------------------------------------------
 % with/without skull MRI indicator
 % ---------------------------------------------------------------------
-Skull         = cfg_entry;
+%%Skull         = cfg_entry;
+%%Skull.tag     = 'withskull';
+%%Skull.name    = 'With or Without Skull';
+%%Skull.help    = {'Input "1" if input MRI contains skull, and "0" otherwise.'};
+%%Skull.strtype = 'e';
+%%Skull.num     = [1 1];
+%%Skull.val	  = {1};
+Skull         = cfg_menu;
 Skull.tag     = 'withskull';
-Skull.name    = 'With or Without Skull';
-Skull.help    = {'Input "1" if input MRI contains skull, and "0" otherwise.'};
-Skull.strtype = 'e';
-Skull.num     = [1 1];
-Skull.val	  = {1};
+Skull.name    = 'With skull and scalp';
+Skull.val     = {1};
+Skull.help    = {'Does this image still include the scalp? Choose true for raw images, false for images where the scalp has been removed (e.g. using FSL BET)'};
+Skull.labels  = {
+             'Yes'
+             'No'
+}';
+Skull.values  = {1 0};
+
 
 % ---------------------------------------------------------------------
 % Leave-one-out cross validation indicator
